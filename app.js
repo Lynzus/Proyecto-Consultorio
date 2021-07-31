@@ -11,7 +11,7 @@ app.use(cors());
 var conexion = mysql.createConnection({
     host:'localhost',
     user:'root',
-    password:'root',
+    password:'Primitivo202101',
     database:'consultorio'
 });
 
@@ -27,7 +27,7 @@ conexion.connect((error) => {
 
 //mostrar todos los articulos
 app.get('/api/pacientes', (req, res) => {
-    conexion.query('SELECT * FROM pacientes', (error, filas) => {
+    conexion.query('SELECT * FROM pacientes order by fecha', (error, filas) => {
         if(error){
             throw error;
         }
@@ -51,7 +51,7 @@ app.get('/api/pacientes/:cedula', (req, res) => {
 });
 //crear un articulo
 app.post('/api/pacientes', (req, res) => {
-    let data = {cedula: req.body.cedula, nombre:req.body.nombre, telefono:req.body.telefono, correo:req.body.correo};
+    let data = {cedula: req.body.cedula, nombre:req.body.nombre, telefono:req.body.telefono, correo:req.body.correo, fecha:new Date(req.body.fecha)};
     let sql = "INSERT INTO pacientes SET ?";
     conexion.query(sql, data, (error, result) => {
         if(error){
@@ -70,8 +70,9 @@ app.put('/api/pacientes/:cedula', (req, res) => {
     let nombre = req.body.nombre;
     let telefono = req.body.telefono;
     let correo = req.body.correo;
-    let sql = "UPDATE pacientes SET nombre = ?, telefono = ?, correo = ? WHERE cedula = ?";
-    conexion.query(sql, [nombre, telefono, correo, cedula], (error, results) => {
+    let fecha = req.body.fecha;
+    let sql = "UPDATE pacientes SET nombre = ?, telefono = ?, correo = ?, fecha = ? WHERE cedula = ?";
+    conexion.query(sql, [nombre, telefono, correo, new Date(fecha) ,cedula], (error, results) => {
         if(error){
             throw error;
         }
