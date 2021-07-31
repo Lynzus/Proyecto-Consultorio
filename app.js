@@ -11,7 +11,7 @@ app.use(cors());
 var conexion = mysql.createConnection({
     host:'localhost',
     user:'root',
-    password:'Primitivo202101',
+    password:'',
     database:'consultorio'
 });
 
