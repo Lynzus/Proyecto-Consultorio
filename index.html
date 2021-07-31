@@ -33,6 +33,7 @@
                     <th>Nombre</th>
                     <th>Teléfono</th>
                     <th>Correo</th>
+                    <th>Fecha</th>
                     <th>Acciones</th>                    
                 </tr>
             </thead>
@@ -42,7 +43,7 @@
     </div>
 
     <div class="modal fade" id="modalPaciente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">Paciente</h5>
@@ -68,6 +69,21 @@
             </div>
 
         </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-3">
+                    Fecha: 
+                </div>
+               <div class='col-sm-6'>
+                  <div class="form-group">
+                     <div class='input-group date'>
+                        <input type='text' name = 'fecha' id = 'fecha' class="form-control" />
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Guardar</button>

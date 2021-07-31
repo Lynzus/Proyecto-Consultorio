@@ -8,6 +8,7 @@ const nombre = document.getElementById('nombre')
 const cedula = document.getElementById('cedula')
 const telefono = document.getElementById('telefono')
 const correo = document.getElementById('correo')
+const fecha = document.getElementById('fecha')
 let opcion = ''
 
 btnCrear.addEventListener('click', ()=> {
@@ -15,6 +16,7 @@ btnCrear.addEventListener('click', ()=> {
     cedula.value = ''
     telefono.value = ''
     correo.value = ''
+    fecha.value = ''
     modalPaciente.show()
     opcion = 'crear'
 })
@@ -26,6 +28,7 @@ const mostrar = (pacientes) => {
                             <td>${paciente.nombre}</td>
                             <td>${paciente.telefono}</td>
                             <td>${paciente.correo}</td>
+                            <td>${paciente.fecha}</td>
                             <td class="text-center"><a class="btnEditar btn btn-primary">Editar</a><a class="btnBorrar btn btn-danger">Borrar</a></td>
                         </tr>
                     `
@@ -72,10 +75,12 @@ on(document, 'click', '.btnEditar', e => {
     const nombreForm = fila.children[1].innerHTML
     const telefonoForm = fila.children[2].innerHTML
     const correoForm = fila.children[3].innerHTML
+    const fechaForm = fila.children[4].innerHTML
     cedula.value = cedulaForm
     nombre.value = nombreForm
     telefono.value = telefonoForm
     correo.value = correoForm
+    fecha.value = fechaForm
     opcion = 'editar'
     modalPaciente.show()
 })
@@ -94,7 +99,8 @@ formPaciente.addEventListener('submit', (e) => {
                 cedula:cedula.value,
                 nombre:nombre.value,
                 telefono:telefono.value,
-                correo:correo.value
+                correo:correo.value,
+                fecha:fecha.value
             })
         })
         .then(response => response.json())
@@ -116,7 +122,9 @@ formPaciente.addEventListener('submit', (e) => {
                 cedula:cedula.value,
                 nombre:nombre.value,
                 telefono:telefono.value,
-                correo:correo.value
+                correo:correo.value,
+                fecha:fecha.value
+
             })
         })
             .then(response => response.json())
